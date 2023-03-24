@@ -1,0 +1,94 @@
+def password(s):
+    l=list(s)
+    nl=[]
+    enlist=[]
+    for i in l:
+        f=ord(i)
+        if(f==121):
+            f=97
+        elif(f==122):
+            f=98
+        else:
+            f=f+2
+        nl.append(chr(f))
+    enst=''.join(nl)
+    enlist.append(enst)
+    print('Encypted password -',enst)
+    
+npk=[]
+npv=[]
+dic={'karthick':'12345','vimal':'a'}
+def login():
+    ck=0
+    cv=0
+    while(1):
+        usr=input("Enter the user name : ")
+        pwd=input("Enter the password : ")
+        verify= dic[usr]
+        if(usr=='karthick'):
+            ck=ck+1
+        if(usr=='vimal'):
+            cv=cv+1
+        if(pwd==verify):
+            if(ck==1):
+                password(pwd)
+            if(cv==1):
+                password(pwd)
+            if(ck==6):
+                u=input("Enter the new password : ")
+                if(u != verify or u not in npk):
+                    password(u)
+                    dic[usr]=u
+                    print("Password updated")
+                    npk.append(u)
+                else:
+                    print("Your new password cant be the old one!")
+                break
+            if(cv==6):
+                u=input("Enter the new password : ")
+                if(u != verify or u not in npv):
+                    password(u)
+                    dic[usr]=u
+                    print("password updated")
+                    npv.append(u)
+                else:
+                    print("Your new password cant be the old one!")
+                break
+            if(ck >=2 and ck<=5):
+                print(usr,'logged in')
+            if(cv>=2 and cv<=5):
+                print(usr,"logged in")
+        
+        else:
+            print("Invalid password")
+def lastpwd():
+    print(npv)
+nuac=0
+def newacc():
+    print("if you create a new account you need to deposit inially 10000rs")
+    print("Press 1 to deposit 10000rs and create an account or press 0 to cancel the process")
+    p=int(input("enter the choice : "))
+    if(p!=0):
+        usr=input("Enter the name : ")
+        pwd=input("Enter the password : ")
+        pw2=input("Re Enter the passwod : ")
+        if(pwd==pw2):
+            nuac=10000
+            password(pwd)
+            dic[usr]=pwd
+        else:
+            print("Invalid password")
+    else:
+        print("Account opening process cancelled!")
+top=[1234,5678,123898,88342,646784]
+while(1):
+    c=int(input("Enter 1 to login or enter 2 to create new account or enter 0 to terminate - "))
+    if(c==1):
+        login()
+    if(c==2):
+        newacc()
+    elif(c==0):
+        break
+
+lastpwd()
+
